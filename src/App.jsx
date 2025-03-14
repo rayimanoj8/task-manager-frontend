@@ -1,47 +1,48 @@
-import { useState } from 'react'
-import './App.css'
-import {Button} from "@/components/ui/button.jsx";
-import {Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle} from "@/components/ui/card.jsx";
-import {Label} from "@/components/ui/label.jsx";
-import {Input} from "@/components/ui/input.jsx";
-import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/select.jsx";
 
-function App() {
-    return (
-        <Card className="w-[350px] mx-auto my-4">
-            <CardHeader>
-                <CardTitle>Sample Form</CardTitle>
-                <CardDescription>use this template</CardDescription>
-            </CardHeader>
-            <CardContent>
-                <form>
-                    <div className="grid w-full items-center gap-4">
-                        <div className="flex flex-col space-y-1.5">
-                            <Label htmlFor="name">Name</Label>
-                            <Input id="name" placeholder="Name of your project" value='a template'/>
-                        </div>
-                        <div className="flex flex-col space-y-1.5">
-                            <Label htmlFor="name">Email</Label>
-                            <Select>
-                                <SelectTrigger id="framework">
-                                    <SelectValue placeholder="Select" />
-                                </SelectTrigger>
-                                <SelectContent position="popper">
-                                    <SelectItem value="he">rayimanoj8@gmail.com</SelectItem>
-                                    <SelectItem value="ee">rayimanoj963@gmail.com</SelectItem>
-                                </SelectContent>
-                            </Select>
-                        </div>
-                    </div>
-                </form>
-            </CardContent>
-            <CardFooter className="flex justify-between">
-                <Button variant="outline">Cancel</Button>
-                <Button>Deploy</Button>
-            </CardFooter>
-        </Card>
-    )
+import {ModeToggle} from "@/components/ModeToggle.jsx";
+import {Separator} from "@/components/ui/separator.jsx";
+import {Main} from "@/components/Main.jsx";
+import {useEffect, useState} from "react";
 
+export default function App() {
+    const [loading, setLoading] = useState(true);
+    const [user, setUser] = useState(null);
+    useEffect(() => {
+        const initializeUser = async () => {
+            let userId = localStorage.getItem("userId");
+
+            if (!userId) {
+                try {
+                    const response = await fetch("http://localhost:5000/api/setup");
+                    const data = await response.json();
+                    userId = data.userId;
+                    localStorage.setItem("userId", userId);
+                } catch (error) {
+                    console.error("Error setting up user:", error);
+                }
+            }
+
+            setLoading(false);
+            setUser(userId);
+            console.log(userId)// Notify parent component that setup is complete
+        };
+
+        initializeUser();
+    }, []);
+  return <div className="h-full flex flex-col">
+          <nav className="flex justify-between px-10 py-4">
+            <h1 className="text-2xl font-bold tracking-tighter">
+              Task Manager
+            </h1>
+            <ModeToggle/>
+          </nav>
+          <Separator/>
+      {
+          loading ?
+              <div className="flex flex-grow items-center justify-center">
+                  <h1 className="text-5xl font-bold">Setting Up For You...</h1>
+              </div>:
+              <Main username={user}/>
+      }
+  </div>
 }
-
-export default App
