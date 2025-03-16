@@ -55,7 +55,7 @@ export default function App() {
                       <div className="flex flex-grow items-center justify-center">
                           <h1 className="text-5xl font-bold">Setting Up For You...</h1>
                       </div> :
-                      <div className="h-full px-2 lg:px-20 space-y-2">
+                      <div className="h-full px-2 lg:px-20 space-y-2 flex flex-col">
                           <Alert>
                               <Cloudy className="size-4" />
                               <AlertTitle>Plan your tasks based on the weather </AlertTitle>
@@ -67,7 +67,7 @@ export default function App() {
                           </Alert>
 
                           <Separator/>
-                          <Main username={user}/>
+                          <Main username={user} />
                       </div>
               }
               <Toaster/>
