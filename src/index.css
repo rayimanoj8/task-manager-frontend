@@ -28,6 +28,14 @@
     --chart-4: 225 19% 85%;
     --chart-5: 225 82% 74%;
     --radius: 0.5rem;
+    --sidebar-background: var(--background);
+    --sidebar-foreground: var(--foreground);
+    --sidebar-primary: var(--primary);
+    --sidebar-primary-foreground: var(--primary-foreground);
+    --sidebar-accent: var(--accent);
+    --sidebar-accent-foreground: var(--accent-foreground);
+    --sidebar-border: var(--border);
+    --sidebar-ring: var(--ring);
   }
 
   .dark {
@@ -55,8 +63,22 @@
     --chart-3: 225 9% 27%;
     --chart-4: 225 2% 20%;
     --chart-5: 225 82% 74%;
+  --sidebar-background: var(--background);
+      --sidebar-foreground: var(--foreground);
+      --sidebar-primary: var(--primary);
+      --sidebar-primary-foreground: var(--primary-foreground);
+      --sidebar-accent: var(--accent);
+      --sidebar-accent-foreground: var(--accent-foreground);
+      --sidebar-border: var(--border);
+      --sidebar-ring: var(--ring);
   }
 }
+
+
+
+
+
+
 @layer base {
   * {
     @apply border-border;
