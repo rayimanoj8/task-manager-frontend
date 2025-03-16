@@ -8,6 +8,7 @@ import store from "@/redux/store.js";
 import {BrowserRouter as Router,Routes,Route} from "react-router-dom";
 import Tasks from "@/components/Tasks.jsx";
 import {EmptyComponent} from "@/components/Empty.jsx";
+import WeatherTaskSuggestions from "@/components/test.jsx";
 createRoot(document.getElementById('root')).render(
   <ThemeProvider>
     <Provider store={store}>
@@ -16,6 +17,7 @@ createRoot(document.getElementById('root')).render(
               <Route path="/" element={<App/>} >
                   <Route path="" element={<EmptyComponent/>} />
                   <Route path="/:pid" element={<Tasks/>} />
+                  <Route path="/weather" element={<WeatherTaskSuggestions/>}/>
               </Route>
           </Routes>
       </Router>
