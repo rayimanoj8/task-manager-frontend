@@ -1,14 +1,21 @@
 import { createSlice } from "@reduxjs/toolkit";
+import tasks from "@/components/Tasks.jsx";
 
 const initialState = {
+    username:null,
     projects: [],
     currentProject: null,
+    tasks:[],
+    loadingTasks:true,
 };
 
 const projectSlice = createSlice({
     name: "project",
     initialState,
     reducers: {
+        setLoadingTasks: (state, action) => {
+            state.loadingTasks = action.payload;
+        },
         setProjects: (state, action) => {
             state.projects = action.payload;
         },
@@ -16,24 +23,38 @@ const projectSlice = createSlice({
             state.currentProject = action.payload;
             state.tasks = action.payload?.tasks || [];
         },
+        setTasksList: (state, action) => {
+            state.tasks = action.payload;
+        },
+        setUsername:(state, action)=>{
+            state.username = action.payload;
+        }
+        ,
         addTask: (state, action) => {
-            state.currentProject.tasks.push(action.payload);
+            state.tasks.push(action.payload);
+            console.log("after adding task", state.tasks);
         },
         updateTask: (state, action) => {
+            console.log("before update",state.tasks)
             state.tasks = state.tasks.map((task) =>
-                task._id === action.payload._id ? action.payload : task
+                task._id === action.payload._id ? {...task,...action.payload} : {...task}
             );
+            console.log("after update",state.tasks)
         },
         deleteTasks: (state, action) => {
-            state.currentProject.tasks = state.currentProject.tasks.filter((task) => !action.payload.includes(task._id));
+            state.tasks = state.tasks.filter((task) => !action.payload.includes(task._id));
         },
     },
 });
 
-export const { setProjects,
+export const {
+    setProjects,
+    setUsername,
     setCurrentProject,
+    setTasksList,
     addTask,
     updateTask,
-    deleteTasks } =
-    projectSlice.actions;
+    deleteTasks,
+    setLoadingTasks
+} = projectSlice.actions;
 export default projectSlice.reducer;

@@ -8,6 +8,7 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { useTheme } from "@/context/theme-provider"
+import {toast} from "sonner";
 
 export function ModeToggle() {
     const { setTheme } = useTheme()
@@ -22,13 +23,22 @@ export function ModeToggle() {
                 </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-                <DropdownMenuItem onClick={() => setTheme("light")}>
+                <DropdownMenuItem onClick={() => {
+                    toast("Theme Changed to light mode")
+                    setTheme("light")
+                }}>
                     <Sun/> Light
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => setTheme("dark")}>
+                <DropdownMenuItem onClick={() => {
+                    toast("Theme Changed to dark mode")
+                    setTheme("dark")
+                }}>
                     <Moon/> Dark
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => setTheme("system")}>
+                <DropdownMenuItem onClick={() => {
+                    toast("Theme Changed to system")
+                    setTheme("system")
+                }}>
                     <LaptopMinimal/> System
                 </DropdownMenuItem>
             </DropdownMenuContent>

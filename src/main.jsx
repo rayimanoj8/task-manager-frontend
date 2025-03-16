@@ -6,7 +6,7 @@ import {ThemeProvider} from "@/context/theme-provider.jsx";
 import {Provider} from "react-redux";
 import store from "@/redux/store.js";
 import {BrowserRouter as Router,Routes,Route} from "react-router-dom";
-import Task from "@/components/Task.jsx";
+import Tasks from "@/components/Tasks.jsx";
 import {EmptyComponent} from "@/components/Empty.jsx";
 createRoot(document.getElementById('root')).render(
   <ThemeProvider>
@@ -15,7 +15,7 @@ createRoot(document.getElementById('root')).render(
           <Routes>
               <Route path="/" element={<App/>} >
                   <Route path="" element={<EmptyComponent/>} />
-                  <Route path="/:pid" element={<Task/>} />
+                  <Route path="/:pid" element={<Tasks/>} />
               </Route>
           </Routes>
       </Router>
