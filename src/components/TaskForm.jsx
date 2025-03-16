@@ -42,7 +42,7 @@ export default function TaskForm({ task = {},updateForm=false, closeDialog}) {
 
     async function onSubmit(values) {
         if(!updateForm){
-            console.log("creating")
+            ("creating")
             try {
                 await axios.post("https://task-manager-rust-sigma.vercel.app/api/task",{
                     "userId": username,
@@ -59,9 +59,9 @@ export default function TaskForm({ task = {},updateForm=false, closeDialog}) {
                 toast("Currently unable to Add a task");
             }
         }else{
-            console.log("updating")
+            ("updating")
             try{
-                console.log(task,values)
+                (task,values)
                 await axios.patch(
                     "https://task-manager-rust-sigma.vercel.app/api/task",
                     {

@@ -71,12 +71,12 @@ const Tasks = () => {
 
     const deleteSelectedTasks = async (taskId) => {
         try {
-            console.log(taskId);
+            (taskId);
             const response = await axios.delete(`https://task-manager-rust-sigma.vercel.app/api/projects/${pid}`, {
                 data: { tasks: [taskId] },
             });
 
-            console.log("Tasks deleted successfully:", response.data);
+            ("Tasks deleted successfully:", response.data);
 
             // ✅ Only update Redux state if API call is successful
             dispatch(deleteTasks(taskId));

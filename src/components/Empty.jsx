@@ -28,7 +28,7 @@ export const EmptyComponent = () =>{
                 projectName: newProject,
             });
 
-            console.log("Project created:", projectResponse.data);
+            ("Project created:", projectResponse.data);
 
             // ✅ Fetch updated project list manually
             const response = await axios.get(`https://task-manager-rust-sigma.vercel.app/api/projects/${username}`);

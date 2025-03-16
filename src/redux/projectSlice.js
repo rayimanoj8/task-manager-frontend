@@ -32,14 +32,14 @@ const projectSlice = createSlice({
         ,
         addTask: (state, action) => {
             state.tasks.push(action.payload);
-            console.log("after adding task", state.tasks);
+            ("after adding task", state.tasks);
         },
         updateTask: (state, action) => {
-            console.log("before update",state.tasks)
+            ("before update",state.tasks)
             state.tasks = state.tasks.map((task) =>
                 task._id === action.payload._id ? {...task,...action.payload} : {...task}
             );
-            console.log("after update",state.tasks)
+            ("after update",state.tasks)
         },
         deleteTasks: (state, action) => {
             state.tasks = state.tasks.filter((task) => !action.payload.includes(task._id));

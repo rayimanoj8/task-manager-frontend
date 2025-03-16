@@ -31,7 +31,7 @@ export default function App() {
             setLoading(false);
             setUser(userId);
             dispatch(setUsername(userId));
-            console.log(userId)// Notify parent component that setup is complete
+            (userId)// Notify parent component that setup is complete
         };
 
         initializeUser();
