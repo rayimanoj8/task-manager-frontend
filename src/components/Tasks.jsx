@@ -36,7 +36,7 @@ const Tasks = () => {
         const fetchTasks = async () => {
             try {
                 dispatch(setLoadingTasks(true));
-                const response = await axios.get(`https://task-manager-rust-sigma.vercel.app/api/projects/${pid}/tasks`);
+                const response = await axios.get(`https://localhost:5000/api/projects/${pid}/tasks`);
                 dispatch(setTasksList(response.data))
             } catch (error) {
                 console.error("Error fetching tasks:", error);
@@ -53,7 +53,7 @@ const Tasks = () => {
     const markAsDone = async (task)=>{
         try{
              await axios.patch(
-                "https://task-manager-rust-sigma.vercel.app/api/task",
+                "https://localhost:5000/api/task",
                 {
                     userId: username,
                     projectId:pid,
@@ -72,7 +72,7 @@ const Tasks = () => {
     const deleteSelectedTasks = async (taskId) => {
         try {
             (taskId);
-            const response = await axios.delete(`https://task-manager-rust-sigma.vercel.app/api/projects/${pid}`, {
+            const response = await axios.delete(`https://localhost:5000/api/projects/${pid}`, {
                 data: { tasks: [taskId] },
             });
 
