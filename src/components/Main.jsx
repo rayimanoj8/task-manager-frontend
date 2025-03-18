@@ -24,7 +24,7 @@ export const Main = ({ username }) => {
         const fetchProjects = async () => {
             if (!username) return;
             try {
-                const response = await axios.get(`https://localhost:5000/api/projects/${username}`);
+                const response = await axios.get(`https://task-manager-rust-sigma.vercel.app/api/projects/${username}`);
                 dispatch(setProjects(response.data));
                 setLoading(false)
             } catch (error) {

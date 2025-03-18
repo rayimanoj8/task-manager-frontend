@@ -23,7 +23,7 @@ export const EmptyComponent = () =>{
         setOpen(false);
         setLoading(true)
         try {
-            const projectResponse = await axios.post("https://localhost:5000/api/project", {
+            const projectResponse = await axios.post("https://task-manager-rust-sigma.vercel.app/api/project", {
                 userId: username,
                 projectName: newProject,
             });
@@ -31,7 +31,7 @@ export const EmptyComponent = () =>{
             ("Project created:", projectResponse.data);
 
             // ✅ Fetch updated project list manually
-            const response = await axios.get(`https://localhost:5000/api/projects/${username}`);
+            const response = await axios.get(`https://task-manager-rust-sigma.vercel.app/api/projects/${username}`);
             dispatch(setProjects(response.data));
             setNewProject("");
             toast(`Added New Project '${newProject}'`)

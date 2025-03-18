@@ -44,12 +44,12 @@ export default function TaskForm({ task = {},updateForm=false, closeDialog}) {
         if(!updateForm){
             ("creating")
             try {
-                await axios.post("https://localhost:5000/api/task",{
+                await axios.post("https://task-manager-rust-sigma.vercel.app/api/task",{
                     "userId": username,
                     "projectId": pid,
                     task:{...values}
                 })
-                const response = await axios.get(`https://localhost:5000/api/projects/${pid}/tasks`);
+                const response = await axios.get(`https://task-manager-rust-sigma.vercel.app/api/projects/${pid}/tasks`);
                 let newTasks = response.data;
                 newTasks = newTasks.map((item) =>({...item,dueDate: new Date(values.dueDate).toISOString()}))
                 dispatch(setTasksList(newTasks));
@@ -63,7 +63,7 @@ export default function TaskForm({ task = {},updateForm=false, closeDialog}) {
             try{
                 (task,values)
                 await axios.patch(
-                    "https://localhost:5000/api/task",
+                    "https://task-manager-rust-sigma.vercel.app/api/task",
                     {
                         userId: username,
                         projectId:pid,

@@ -21,7 +21,7 @@ export default function App() {
             let userId = localStorage.getItem("userId");
             if (!userId) {
                 try {
-                    const response = await fetch("https://localhost:5000/api/setup");
+                    const response = await fetch("https://task-manager-rust-sigma.vercel.app/api/setup");
                     const data = await response.json();
                     userId = data.userId;
                     localStorage.setItem("userId", userId);

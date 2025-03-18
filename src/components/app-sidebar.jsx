@@ -45,7 +45,7 @@ export function AppSidebar({loading}) {
   const addProject = async () => {
     setOpen(false);
     try {
-      const projectResponse = await axios.post("https://localhost:5000/api/project", {
+      const projectResponse = await axios.post("https://task-manager-rust-sigma.vercel.app/api/project", {
         userId: username,
         projectName: newProject,
       });
@@ -53,7 +53,7 @@ export function AppSidebar({loading}) {
       ("Project created:", projectResponse.data);
 
       // ✅ Fetch updated project list manually
-      const response = await axios.get(`https://localhost:5000/api/projects/${username}`);
+      const response = await axios.get(`https://task-manager-rust-sigma.vercel.app/api/projects/${username}`);
       dispatch(setProjects(response.data));
       setNewProject("");
       toast(`Added New Project '${newProject}'`)
@@ -64,13 +64,13 @@ export function AppSidebar({loading}) {
   };
   const deleteProject = async (projectId,projectName) => {
     try {
-      await axios.delete("https://localhost:5000/api/project", {
+      await axios.delete("https://task-manager-rust-sigma.vercel.app/api/project", {
         data:{
           userId:username,
           projectId:projectId,
         }
       });
-      const response = await axios.get("https://localhost:5000/api/projects/"+username);
+      const response = await axios.get("https://task-manager-rust-sigma.vercel.app/api/projects/"+username);
       dispatch(setProjects(response.data));
       dispatch(setCurrentProject(null));
       navigate("/");
